@@ -1,0 +1,6 @@
+.header{
+    background: -webkit-linear-gradient(#1FBDAF, #24ADD7); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#1FBDAF, #24ADD7); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#1FBDAF, #24ADD7); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#1FBDAF, #24ADD7); /* 标准的语法 */
+}

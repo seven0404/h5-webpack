@@ -4,7 +4,13 @@ let fs =require('fs')
 function getEntry(file_list){
   var entry={};
   file_list.forEach((item)=>{
-      entry[item[0].split('.').slice(0,-1).join('.')]=item[2]
+    if(/\.js$/.test(item[0])){
+        var re =new RegExp("^" + process.env.npm_config_prd + "/");
+        if(re.test(item[3])){
+            console.log('entry',item[3]+item[0].split('.')[0])
+            entry[item[3]+item[0].split('.')[0]]=item[2]
+        }
+    }
   })
   return entry;
   /*entry 看起来就是这样
@@ -16,6 +22,17 @@ function getEntry(file_list){
   */
 }
 exports.getEntry = getEntry;
+
+function getKey(item){
+    var re =new RegExp("^" + process.env.npm_config_prd + "/");
+    if(re.test(item[3])){
+        console.log('getKey',item[3]+item[0].split('.')[0])
+        return item[3]+item[0].split('.')[0]
+    }
+    
+}
+
+exports.getKey = getKey;
 
 
 //递归遍历所有文件
@@ -32,7 +49,8 @@ function getAllFileArr(path){
                     getAllFile(curPath);
                 } else {
                     if(file!=='.DS_Store'){
-                        AllFileList.push([file,path,curPath])
+                        let pa = path.replace('./page/','') + '/'
+                        AllFileList.push([file,path,curPath,pa])
                     }
                 }
             });

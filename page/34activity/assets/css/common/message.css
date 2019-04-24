@@ -1,0 +1,32 @@
+.msg-modal {
+    position: fixed;
+    left: 0;
+    top: 30%;
+    width: 100%;
+    z-index: 99999;
+    background-color: rgba(0,0,0,0);
+}
+.msg-content {
+    width: 80%;
+    margin-left: 10%;
+    padding: 12px 0;
+    text-align: center;
+    font-size: 0.28rem;
+    color: #ffffff;
+    background-color: #5bc0de;
+}
+.success-msg {
+    background-color: rgba(31,189,175,0.6);
+}
+.error-msg {
+    background-color: rgba(242,79,79,0.6);
+}
+.warning-msg {
+    background-color: rgba(240,173,78,0.6);
+}
+.tip-msg {
+    background-color: rgba(0,0,0,0.5);
+}
+.default-msg {
+    background-color: #337ab7;
+}

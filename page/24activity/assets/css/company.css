@@ -1,0 +1,165 @@
+.wrapper {
+    background-color: #F2F2F2;
+    box-sizing: border-box;
+}
+.cards {
+    box-sizing: border-box;
+
+}
+
+.cards .card {
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+}
+.card:first-child {
+    margin-top: 0;
+}
+.card .header {
+    position: relative;
+    font-size: 0.32rem;
+    font-weight: bold;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    color: #F32139;
+    padding-left: 0.5rem;
+    background-color: #ffffff;
+}
+.card .header::after {
+    content: '';
+    position: absolute;
+    top: 0.1rem;
+    left: 0.2rem;
+    width: 4px;
+    height: .4rem;
+    background-color: #f32139;
+}
+.card .body {
+    font-size: 0.28rem;
+    box-sizing: border-box;
+    padding: 0.24rem;
+    background-color: #ffffff;
+    border-top: 1px solid #f2f2f2;
+}
+
+.card .body .desc {
+    line-height: 0.4rem;
+    text-align: justify;
+}
+
+.company-block {
+
+}
+
+.jobs {
+    background-color: #f2f2f2;
+    border-top: 1px solid #f2f2f2;
+}
+
+.work {
+    background: #FFF;
+    font-size: .34rem;
+    padding: 0 0.24rem 0.2rem;
+    box-sizing: border-box;
+    margin-bottom: 0.2rem;
+}
+
+.first {
+    padding: .2rem 0;
+}
+
+.first > .worker {
+    float: left;
+    font-size: .34rem;
+    color: RGBA(32, 37, 31, 1);
+    font-weight: bold;
+    width: 60%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    word-wrap: break-word;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+}
+
+.first > .price {
+    float: right;
+    font-weight: bold;
+    color: rgba(236, 97, 42, 1);
+}
+
+.nation {
+    width: 100%;
+    padding: 0 0 0.2rem;
+}
+
+.nation > .place {
+    float: left;
+    font-size: .26rem;
+    color: rgba(96, 96, 96, 1);
+}
+
+/*.place>.icon{
+    width: .25rem;
+    height: .27rem;
+}*/
+.nation > .date {
+    float: right;
+    font-size: .22rem;
+    color: rgba(206, 206, 206, 1);
+}
+
+.insurance {
+
+}
+
+.insurance li {
+    float: left;
+    width: auto;
+    height: .3rem;
+    margin: .1rem;
+    background: rgba(243, 243, 243, 1);
+    border-radius: .1rem;
+    font-size: .22rem;
+    color: rgba(96, 96, 96, 1);
+    padding: .1rem;
+}
+
+.end {
+    margin-top: 0.2rem;
+    color: rgba(96, 96, 96, 1);
+}
+
+.left > span {
+    font-size: .24rem;
+    float: left;
+}
+
+.left > .aptitude {
+    position: relative;
+    top:-0.04rem;
+    float: left;
+    padding:0.05rem 0.10rem;
+    height: .26rem;
+    line-height: 0.26rem;
+    background: rgba(255, 255, 255, 1);
+    color: rgba(238, 127, 74, 1);
+    border: 1px solid rgba(238, 127, 74, 1);
+    margin-left: .08rem;
+    font-size: .24rem;
+    border-radius: 0.08rem;
+}
+
+.employ {
+    float: right;
+    color: rgba(96, 96, 96, 1);
+    font-size: .24rem;
+    display: none;
+}
+
+.employ span {
+    color: RGBA(236, 97, 42, 1);
+}
+
+.introduce {
+    white-space: pre-line;
+}

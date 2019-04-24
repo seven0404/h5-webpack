@@ -1,0 +1,34 @@
+{
+  "development": {
+    "apiURL": "http://mis.test.51zouchuqu.com/",
+    "shareURL": "http://www.51zouchuqu.com/faqs/test/single-page/828activity/",
+    "wxServerUrl": "http://wx.51zouchuqu.com/wechat/",
+    "getBouns":"bro/v1/bouns",
+    "findCount":"bro/v1/userLuckyDraw/findCount",
+    "doLottery":"bro/v1/userLuckyDraw",
+    "packInfo":"bro/v1/userLuckyDraw",
+    "getMyAward":"bro/v1/userLuckyDraw/list",
+    "myInviteFriend":"bro/v1/userLuckyDraw/listByUid",
+    "activityCompany":"us/v1/company/activityCompany",
+    "getActivityJobs":"nj/v1/jobs/activityJobs",
+    "isStart":"bro/v1/bouns/isClaimed",
+    "login":"us/v1/login",
+    "smsCode":"us/v1/vericode/sms/"
+  },
+  "product": {
+    "apiURL": "http://mis.51zouchuqu.com/",
+    "shareURL": "http://www.51zouchuqu.com/faqs/single-page/828activity/",
+    "wxServerUrl": "http://wx.51zouchuqu.com/wechat/",
+    "getBouns":"bro/v1/bouns",
+    "findCount":"bro/v1/userLuckyDraw/findCount",
+    "doLottery":"bro/v1/userLuckyDraw",
+    "packInfo":"bro/v1/userLuckyDraw",
+    "getMyAward":"bro/v1/userLuckyDraw/list",
+    "myInviteFriend":"bro/v1/userLuckyDraw/listByUid",
+    "activityCompany":"us/v1/company/activityCompany",
+    "getActivityJobs":"nj/v1/jobs/activityJobs",
+    "isStart":"bro/v1/bouns/isClaimed",
+    "login":"us/v1/login",
+    "smsCode":"us/v1/vericode/sms/"
+  }
+}

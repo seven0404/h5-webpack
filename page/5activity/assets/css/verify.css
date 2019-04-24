@@ -1,0 +1,122 @@
+.real {
+    width: 100%;
+    height: 2.8rem;
+    background: rgba(255, 255, 255, 1);
+    margin-bottom: 20px;
+}
+
+.real > h1 {
+    font-size: .28rem;
+    color: rgba(51, 51, 51, 1);
+    padding: .49rem .32rem 0rem;
+    margin:0;
+}
+
+.certification {
+    width: 6.64rem;
+    height: 1.11rem;
+    background: rgba(255, 255, 255, 1);
+    border-radius: .56rem;
+    box-shadow: 0rem .1rem .4rem rgba(153, 153, 153, 0.27);
+    margin: .3rem auto;
+}
+.certification>.manage{
+    float: left;
+    width:.77rem;
+    height: .69rem;
+    margin: .21rem .4rem;
+}
+.certification .up-file-text{
+    float: left;
+    font-size: .28rem;
+    color:#118A7A;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.back{
+    float: right;
+    width: .25rem;
+    height: .42rem;
+    margin: 4% 10%;
+    color: #1fbdaf;
+    font-size: .5rem;
+}
+.uploaded-text{
+    float: right;
+    color: #ccc;
+    font-size: .28rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+.abroad{
+    width: 100%;
+    /* height: 3.49rem; */
+    background: #FFFFFFFF;
+}
+.nav{
+    font-size: .28rem;
+    color:rgba(51,51,51,1);
+    padding: .4rem .31rem;
+}
+.pic{
+    padding:.1rem .45rem;
+    background: #FFFFFFFF;
+}
+.pic li{
+    float: left;
+    width:1.8rem;
+    height:1.8rem;
+    border-radius:.1rem;
+    border: 1px dashed rgba(204,204,204,1);
+    margin-left: .2rem;
+    margin-bottom: .2rem;
+    /* overflow: hidden; */
+    position: relative;
+}
+.pic .verify-img{
+    width:1.8rem;
+    height:1.8rem;
+    overflow: hidden;
+}
+.pic li .delete{
+    opacity: 0.6;
+    position: absolute;
+    top:-10px;
+    right: -8px;
+    background: #9B9B9B;
+    border-radius: 50%;
+}
+.pic li .delete>img{
+    width: 20px;
+    height: 20px;
+}
+.pic li:last-child>img{
+    width: .76rem;
+    height: .61rem;
+    margin: .35rem .52rem .2rem;
+}
+.pic span{
+    font-size: .24rem;
+    color:rgba(204,204,204,1);
+    margin-left: .4rem;
+}
+
+.submit-wrap{
+    width: 100%;
+    text-align: center;
+}
+.submit-wrap>span{
+    display: inline-block;
+    width: 90%;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    background: #118a7a;
+    font-size: 0.4rem;
+    color:#fff;
+    margin-top:1rem;  
+    border-radius: 4px;
+}
+.submit-wrap .forbid-summit{
+   background: #ccc;
+}

@@ -1,0 +1,250 @@
+/* .wrapper{
+  background: url('../images/rotate-bg.png') no-repeat center center;
+  background-size:cover; 
+} */
+.wrapper{
+  overflow-x: hidden;
+  background: #ff4432;
+}
+.rotate-wrap{
+  position: relative;
+ 
+}
+.big-pane{
+  width: 100%;
+  position: absolute;
+  top: 24%;
+}
+.rotate-pane{
+  width: 86%;
+  margin: 0 auto;
+}
+.rotate-pane>img{
+  width: 100%;
+  height: 100%;
+}
+.point{
+  text-align: center;
+  width: 30%;
+  position: absolute;
+  top:47.2%;
+  left:50%;
+  transform: translate(-50%,-61%)
+}
+.point>img{
+  width: 100%;
+  height: 100%;
+}
+.do-award-num-wrap{
+  text-align: center;
+  padding-top:2px;
+}
+.do-award-num{
+  color:red;
+  font-weight: bold;
+}
+.award-rules{
+  height: 0.4rem;
+  line-height: 0.4rem;
+  padding:0 0.20rem;
+  font-size: 10px;
+  text-align: center;
+  color: #000;
+  position: fixed;
+  background: rgba(255,255,255,0.6);
+  top:40px;
+  right:0;
+  border-radius:4px 0 0 4px; 
+}
+
+.award-list-wrap{
+  position: absolute;
+  top:70.2%;
+  padding:0 4px;
+}
+.award-header>img{
+  width: 100%;
+  vertical-align: top;
+}
+.award-list{
+  position: relative;
+  top:-1px;
+  border: 5px solid #FFF600;
+  border-top:0;
+  border-radius:0 0 6px 6px; 
+  padding-top:20px;
+  background: #ff4432;
+}
+.award-list-div{
+  height: 105px;
+  overflow: hidden;
+}
+.award-list-ul{
+  margin: 16px 0;
+  color: #fff; 
+  position: relative;
+}
+.award-list-ul>li{
+  margin: 0 4px;
+  padding:10px 8px;
+  border-bottom: 1px dashed #ccc;
+}
+.award-list-ul>li>div:nth-child(1){
+  float: left;
+}
+.award-list-ul>li>div:nth-child(2){
+  float: right;
+}
+
+
+.mask{
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom: 0;
+}
+.rules-content,.award-pack,.share-wrap,.award-crash{
+  width: 80%;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  color:#000;
+  padding: 15px;
+  border-radius:6px; 
+}
+.rules-content li{
+  font-size: 12px;
+  line-height: 1.5;
+  padding-bottom: 8px;
+}
+
+/* 礼包中奖 */
+.award-pack{
+  width: 90%;
+  position: relative;
+  background: transparent;
+}
+.submit-form{
+  position: absolute;
+  padding:0 15%;
+  top:56%;
+}
+.submit-form-ul>li{
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  padding-right: 15px;
+  color: #fff;
+}
+.submit-form-ul>li>input{
+  width: 100%;
+  height: 0.5rem;
+  outline: none;
+  border: none;
+  margin-top:0.10rem;
+  border-radius:6px;
+  padding-left:6px; 
+}
+.submit-form-ul>li>p{
+  font-size: 0.24rem;
+ }
+.submit-form-site{
+  color: #fff;
+  margin-top:0.1rem;
+}
+.submit-form-site>input{
+  width: 94%;
+  height: 0.5rem;
+  outline: none;
+  border: none;
+  margin-top:0.10rem;
+  border-radius:6px;
+  padding-left:6px; 
+}
+.submit-form-site>p{
+  font-size: 0.24rem;
+ }
+.award-num{
+  position: absolute;
+  top:43%;
+  color: #FFFF00;
+  font-size: 1.1rem;
+  left:25%;
+  font-weight: bold;
+}
+.submit{
+  position: absolute;
+  margin-left:16%;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.4rem;
+  border-radius: 0.4rem;
+  bottom: 10%;
+  width: 60%;
+  background: #FF000F;
+  color:#FFFF00;
+  text-align: center;
+}
+
+/* 现金大奖 */
+.award-crash{
+  width: 90%;
+  background: transparent;
+}
+.crash-num{
+  position: absolute;
+  top:47%;
+  color: #FFFF00;
+  font-size: 1.2rem;
+  left:22%;
+  font-style: italic;
+}
+.confirm{
+  position: absolute;
+  margin-left:16%;
+  height: 0.8rem;
+  line-height: 0.8rem;
+  font-size: 0.4rem;
+  border-radius: 0.4rem;
+  bottom: 7%;
+  width: 60%;
+  background: #FF000F;
+  color:#FFFF00;
+  text-align: center;
+}
+
+
+/* 邀请好友 */
+.share-wrap{
+  width: 100%;
+  background: transparent;
+}
+.share-wrap ul{
+  padding:0 10%;
+  position: absolute;
+  top:64%;
+}
+.share-wrap ul>li{
+  text-align: center;
+  float: left;
+  width: 33.3%;
+  margin-bottom:20px;
+}
+.share-wrap ul>li>img{
+  width:1rem;
+  vertical-align: top;
+}
+.share-close{
+  position: absolute;
+  bottom:-10%;
+  left:45%;
+  text-align: center;
+}
+.share-close>img{
+  width: 0.8rem;
+}
+
