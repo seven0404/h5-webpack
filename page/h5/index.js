@@ -1,1 +1,1 @@
-console.log('index')
+console.log('es6-> inde22x111')

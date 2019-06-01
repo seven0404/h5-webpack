@@ -2,175 +2,150 @@ const path = require('path');
 const fs = require('fs')
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
-console.log('process.env.NODE_ENV',process.env.NODE_ENV)
-const pathBase = devMode ? __dirname +  '/dev' :__dirname +  '/dist'
-
+const type = process.env.NODE_TYPE
+const pathBase = devMode ? __dirname + '/dev' : __dirname + '/dist'
+const projectName = '/page/' + process.env.npm_config_prd
 const utils = require('./webpack.util.js')
 
-//打包之前删除build文件夹
-utils.deleteFolderRecursive('./build')
 
-let publicPath = '/'
-  , updateTime = new Date().getTime()
+// 检测项目是否存在
+const dirExist = fs.existsSync(path.join(__dirname, projectName))
+if (!dirExist) {
+  console.error(`在page目录下没有这名字为 ${process.env.npm_config_prd}的项目， 请检查项目名称  \n`)
+  process.exit(`在page目录下没有这名字为 ${process.env.npm_config_prd}的项目， 请检查项目名称  \n`);
+  return;
+}
+
+const allFileArr = utils.getAllFileArr('./page')
+
+//打包之前删除build文件夹
+if (type == 'dev') {
+  utils.deleteFolderRecursive('./dev')
+} else if (type == 'build') {
+  utils.deleteFolderRecursive('./dist')
+}
+
+console.log('entry----', utils.getEntry(allFileArr), '----')
 
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    ...utils.getEntry(utils.getAllFileArr('./page')),
+    ...utils.getEntry(allFileArr),
     "jquery": 'jquery'
   },
   output: {
-    path:pathBase,
-    publicPath: publicPath,
-    filename: `[name].js`
+    path: pathBase,
+    publicPath: '/',
+    filename: `[name]`
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   sourceMap: true,
-    //   include: /\.css$/,
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+    new ExtractTextPlugin({
+      filename: '[name]'
     }),
-    // 公共代码单独打包
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'common', //对外吐出的chuank名
-    //   chunks:Object.keys(utils.getEntry(utils.getAllFileArr('./page'))), //数组，需要打包的文件[a,b,c]对应入口文件中的key
-    //   minChunks:4, //chunks至少引用4次的时候打包
-    //   filename: '[name].js' //打包后的文件名
-    // })
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: {
+        safe: true,
+        discardComments: {
+          removeAll: true
+        }
+      },
+      canPrint: true
+    }),
+    new CopyPlugin(utils.getImgEntry(allFileArr)),
+    new BrowserSyncPlugin({
+      server: {
+        baseDir: pathBase,
+      },
+    }, {
+      reload: true,
+    })
   ],
+  resolve: {
+    modules: [
+      path.resolve(projectName),
+      path.resolve('node_modules')
+    ],
+    extensions: ['.js', '.css', '.less']
+  },
   module: {
-    rules: [
+    rules: [{
+        test: /\.js$/,
+        include: [
+          path.resolve(__dirname, `${projectName}`),
+        ],
+        exclude: [
+          path.resolve('node_modules'),
+        ],
+        loader: 'babel-loader'
+      },
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('css-loader')
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
+        })
       }
     ]
   },
   devServer: {
-    contentBase: "./dev",//本地服务器所加载的页面所在的目录
+    contentBase: "./dev/" + process.env.npm_config_prd, //本地服务器所加载的页面所在的目录
     noInfo: true,
     host: 'localhost',
     open: 'true',
-    port: '8989'
+    port: '8989',
+    // proxy: { // 代理
+    //   '/api': {
+    //     target: 'http://dev.goglbo.com',
+    //     // target: 'http://192.168.1.24:9701',
+    //     pathRewrite: { '^/api': '' },
+    //     ws: false,
+    //     changeOrigin: false
+    //   }
+    // }
   }
 }
-
-
-/**
- * 读取路径信息
- * @param {string} path 路径
- */
-function getStat(path){
-  return new Promise((resolve, reject) => {
-      fs.stat(path, (err, stats) => {
-          if(err){
-              resolve(false);
-          }else{
-              resolve(stats);
-          }
-      })
-  })
-}
-
-/**
-* 创建路径
-* @param {string} dir 路径
-*/
-function mkdir(dir){
-  return new Promise((resolve, reject) => {
-      fs.mkdir(dir, err => {
-          if(err){
-              resolve(false);
-          }else{
-              resolve(true);
-          }
-      })
-  })
-}
-
-/**
-* 路径是否存在，不存在则创建
-* @param {string} dir 路径
-*/
-async function dirExists(dir){
-  let isExists = await getStat(dir);
-  //如果该路径且不是文件，返回true
-  if(isExists && isExists.isDirectory()){
-      return true;
-  }else if(isExists){     //如果该路径存在但是文件，返回false
-      return false;
-  }
-  //如果该路径不存在
-  let tempDir = path.parse(dir).dir;      //拿到上级路径
-  //递归判断，如果上级目录也不存在，则会代码会在此处继续循环执行，直到目录存在
-  let status = await dirExists(tempDir);
-  let mkdirStatus;
-  if(status){
-      mkdirStatus = await mkdir(dir);
-  }
-  return mkdirStatus;
-}
-
-
-// 复制 css和图片 到 指定目录下
-function cpCss(item){
-  console.log('item',item)
-  if (/\.css$|\.(png|jpg|gif|svg|eot|ttf|woff)$/.test(item[0])) {
-    module.exports.plugins.push(async function(){
-      await dirExists(pathBase +'/'+ item[3]);
-      return this.plugin('done', function() {
-            // 创建读取流
-            var readable = fs.createReadStream( item[2]);
-            // 创建写入流
-            var writable = fs.createWriteStream(pathBase +'/'+ item[3]+item[0] );
-  
-            // 通过管道来传输流
-            readable.pipe( writable );
-      });
-    });
-  }
-}
-
-
 
 //将html文件打包
-var html_list = utils.getAllFileArr('./page');
-html_list.forEach((item) => {
+allFileArr.forEach((item) => {
   var re = new RegExp("^" + process.env.npm_config_prd + "/");
   if (re.test(item[3])) {
     var name = item[2];
     if (/\.html$/.test(item[0])) {
-      var prex = item[3]//item[1].indexOf('html')>-1?'html/':''
+      var prex = item[3]
       module.exports.plugins.push(
         new htmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
           // favicon: './src/images/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
           filename: prex + item[0],
           template: name, //html模板路径
-          inject: true, //js插入的位置，true/'head'/'body'/false
+          inject: true, //js插入的位置，true, false, 'head', 'body'. （false 不注入， true 注入到body尾部）
           hash: true, //为静态资源生成hash值
-          chunks: [utils.getKey(item)],//需要引入的chunk，不配置就会引入所有页面的资源
-          minify: { //压缩HTML文件
-            removeComments: true, //移除HTML中的注释
-            collapseWhitespace: false, //删除空白符与换行符
-            // ignoreCustomFragments:[
-            //     /\{\{[\s\S]*?\}\}/g  //不处理 {{}} 里面的 内容
-            // ]
-          },
+          chunks: ['jquery', ...utils.getKey(item)], //需要引入的chunk，不配置就会引入所有页面的资源
+          chunksSortMode: 'none',
+          // minify: { //压缩HTML文件
+          //   removeComments: true, //移除HTML中的注释
+          //   collapseWhitespace: false, //删除空白符与换行符
+          //   ignoreCustomFragments:[
+          //       /\{\{[\s\S]*?\}\}/g  //不处理 {{}} 里面的 内容
+          //   ]
+          // },
           minify: false //不压缩
         })
       )
     }
-    cpCss(item)
   }
 })
-
 
 //生产模式打包的时候进行代码压缩合并优化
 if (process.env.NODE_ENV === 'production') {

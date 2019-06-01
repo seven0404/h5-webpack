@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("console.log('index');\n\n//# sourceURL=webpack:///./page/h5/index.js?");
+eval("console.log('es6-> inde22x111')\n\n//# sourceURL=webpack:///./page/h5/index.js?");
 
 /***/ })
 

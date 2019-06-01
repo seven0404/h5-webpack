@@ -4,11 +4,10 @@ let fs =require('fs')
 function getEntry(file_list){
   var entry={};
   file_list.forEach((item)=>{
-    if(/\.js$/.test(item[0])){
+    if(/.*\.js$|.*\.css$|.*\.less$/.test(item[0])){
         var re =new RegExp("^" + process.env.npm_config_prd + "/");
         if(re.test(item[3])){
-            console.log('entry',item[3]+item[0].split('.')[0])
-            entry[item[3]+item[0].split('.')[0]]=item[2]
+            entry[item[2].split('page/')[1].replace(/.less$/,'.css')]=item[2]
         }
     }
   })
@@ -24,15 +23,38 @@ function getEntry(file_list){
 exports.getEntry = getEntry;
 
 function getKey(item){
-    var re =new RegExp("^" + process.env.npm_config_prd + "/");
-    if(re.test(item[3])){
-        console.log('getKey',item[3]+item[0].split('.')[0])
-        return item[3]+item[0].split('.')[0]
-    }
-    
+    let arr = []
+    arr.push(item[2].split('page/')[1].replace(/\.html$/,'.js'))
+    arr.push(item[2].split('page/')[1].replace(/\.html$/,'.css'))
+    console.log(arr)
+    return arr
 }
 
 exports.getKey = getKey;
+
+
+function getImgEntry(file_list){
+    var imgArray=[];
+    var re =new RegExp("^" + process.env.npm_config_prd + "/");
+    file_list.forEach((item)=>{
+        if(re.test(item[3]) && /\.(jpe?g|png|gif|svg)$/i.test(item[0])){
+            let data = {}
+            data.from = item[2]
+            data.to = item[2].replace('./page', '.')
+            imgArray.push(data)
+        }
+    })
+    return imgArray;
+    /*entry 看起来就是这样
+    [
+      { from: 'source', to: 'dest' },
+      { from: 'other', to: 'public' },
+    ]
+  */
+}
+
+exports.getImgEntry = getImgEntry;
+
 
 
 //递归遍历所有文件
