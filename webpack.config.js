@@ -37,7 +37,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
     ...utils.getEntry(allFileArr),
-    "jquery": 'jquery'
+    "jquery.js": 'jquery'
   },
   output: {
     path: pathBase,
@@ -131,8 +131,7 @@ allFileArr.forEach((item) => {
           template: name, //html模板路径
           inject: true, //js插入的位置，true, false, 'head', 'body'. （false 不注入， true 注入到body尾部）
           hash: true, //为静态资源生成hash值
-          chunks: ['jquery', ...utils.getKey(item)], //需要引入的chunk，不配置就会引入所有页面的资源
-          chunksSortMode: 'none',
+          chunks: [...utils.getKey(item),'jquery.js'], //需要引入的chunk，不配置就会引入所有页面的资源
           // minify: { //压缩HTML文件
           //   removeComments: true, //移除HTML中的注释
           //   collapseWhitespace: false, //删除空白符与换行符
