@@ -1,0 +1,569 @@
+body {
+  -webkit-user-select: none;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1024px;
+  font-family: HelveticaNeue, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  color: #989A9C;
+  background: #191919;
+  letter-spacing: 1px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+
+  input:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .control {
+      width: 200px;
+      height: 100%;
+      border-right: 1px solid #ffffff;
+      position: relative;
+
+      .title {
+        font-size: 20px;
+        text-align: center;
+        color: #ffffff;
+        border-bottom: 1px solid #ffffff;
+        line-height: 60px;
+      }
+
+      .typeToggle {
+        display: flex;
+        line-height: 40px;
+        border-bottom: 1px solid #ffffff;
+
+        .active {
+          color: #ffffff;
+          font-size: 18px;
+        }
+
+        div {
+          cursor: pointer;
+          font-size: 14px;
+          flex: 1;
+          text-align: center;
+          border-right: 1px solid #ffffff;
+        }
+
+        div:nth-child(2) {
+          border-right: none;
+        }
+      }
+
+      .add {
+        font-size: 16px;
+        text-align: center;
+        line-height: 60px;
+        box-sizing: border-box;
+        display: none;
+
+        a {
+          text-decoration: none;
+        }
+
+        span {
+          color: #ffffff;
+          border: 1px solid #ffffff;
+          padding: 10px 20px;
+          border-radius: 40px;
+          cursor: pointer;
+        }
+      }
+
+      .catalogue {
+        height: calc(100% - 160px);
+        overflow-y: scroll;
+        padding: 5px;
+        box-sizing: border-box;
+
+        .prd {
+          margin-top: 20px;
+
+          .prdTitle {
+            font-size: 14px;
+            color: #eeeeee;
+            cursor: pointer;
+
+            .jiantou {
+              width: 16px;
+              height: 16px;
+              margin-bottom: -4px;
+            }
+
+            .upload {
+              width: 20px;
+              height: 20px;
+              margin-bottom: -4px;
+              float: right;
+              margin-right: 10px;
+              cursor: pointer;
+            }
+          }
+
+          li {
+            font-size: 12px;
+            list-style: none;
+            margin: 0;
+            padding-left: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+
+            &.active {
+              border-left: 5px solid #ffffff;
+              color: #ffffff;
+            }
+          }
+
+          .list {
+            display: none;
+            .download{
+              color: #8eb3f3;
+            }
+          }
+        }
+      }
+
+      .icon {
+        position: absolute;
+        z-index: 10;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 50px 25px 50px 0;
+        border-color: transparent #3484F5 transparent transparent;
+
+        img {
+          position: absolute;
+          z-index: 1;
+          right: -28px;
+          top: -49px;
+          height: 100px;
+          width: 30px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .main {
+      flex: 1;
+      position: relative;
+      .icon {
+        display: none;
+        position: absolute;
+        z-index: 10;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 50px 0 50px 25px;
+        border-color: transparent transparent transparent #3484F5;
+
+        img {
+          position: absolute;
+          z-index: 1;
+          left: -28px;
+          top: -49px;
+          height: 100px;
+          width: 30px;
+        }
+      }
+    }
+  }
+
+  .uploadModel {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px 10px #989A9C;
+    background: #ffffff;
+    border-radius: 10px;
+    width: 500px;
+    height: 620px;
+    color: #333333;
+    font-size: 18px;
+    text-align: center;
+
+    #to{
+      margin-top: 10px;
+    }
+
+    .uTitle {
+      font-size: 30px;
+      text-align: center;
+      margin-top: 40px;
+      padding-bottom: 20px;
+    }
+
+    .form li {
+      display: flex;
+      margin-top: 20px;
+      color: #333333;
+      padding-left: 30px;
+      line-height: 30px;
+
+      .title {
+        line-height: 35px;
+      }
+
+      input {
+        width: 292px;
+        height: 30px;
+        border: 1px solid #eeeeee;
+        border-radius: 8px;
+        padding-left: 10px;
+        font-size: 14px;
+
+        &#upload_file {
+          border: none;
+        }
+      }
+
+      .input {
+        position: relative;
+
+        .cover {
+          border-radius: 8px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5)
+        }
+      }
+
+      .progress {
+        height: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 2px 2px #989A9C;
+        position: relative;
+
+        #progress_bar_top {
+          border-radius: 10px;
+          height: 10px;
+          width: 0%;
+          background: #32bf02;
+        }
+
+        #progressValue {
+          position: absolute;
+          right: -58px;
+          top: -9px;
+        }
+      }
+    }
+
+    button {
+      color: #ffffff;
+      cursor: pointer;
+      width: 100px;
+      font-size: 16px;
+      height: 40px;
+      line-height: 36px;
+      margin-bottom: 14px;
+      border-radius: 4px;
+      background: #685CF8;
+      border-radius: 24px;
+
+      &.cancle {
+        background: #999999;
+      }
+    }
+
+    p {
+      text-align: left;
+      padding-left: 31px;
+      margin-top: 50px;
+
+      span {
+        color: red;
+      }
+    }
+
+    .button {
+      position: absolute;
+      right: 14px;
+      bottom: 0;
+    }
+    .sendInfotitle{
+      text-align: left;
+      padding-left: 29px;
+      margin-top: 16px;
+    }
+    .sendInfo{
+      width: 250px;
+      height: 210px;
+      overflow: scroll;
+      margin: 10px auto;
+      text-align: left;
+      border: 1px solid #083490;
+    }
+  }
+}
+
+.bbit-tree ul,
+.bbit-tree li {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.bbit-tree-body {
+  font-size: 12px;
+}
+
+.bbit-tree-icon,
+.bbit-tree-ec-icon,
+.bbit-tree-node-cb,
+.bbit-tree-elbow-line,
+.bbit-tree-elbow,
+.bbit-tree-elbow-end,
+.bbit-tree-elbow-plus,
+.bbit-tree-elbow-minus,
+.bbit-tree-elbow-end-plus,
+.bbit-tree-elbow-end-minus {
+  border: 0 none;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  width: 16px;
+  background-repeat: no-repeat;
+}
+
+.bbit-tree-node-cb {
+  height: 16px;
+}
+
+.bbit-tree-node-collapsed .bbit-tree-node-icon,
+.bbit-tree-node-expanded .bbit-tree-node-icon,
+.bbit-tree-node-leaf .bbit-tree-node-icon {
+  border: 0 none;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+  width: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ie .bbit-tree-node-indent img,
+.ie .bbit-tree-node-icon,
+.ie .bbit-tree-ec-icon {
+  vertical-align: middle !important;
+}
+
+.bbit-tree-noicon .bbit-tree-node-icon {
+  width: 0;
+  height: 0;
+}
+
+.bbit-tree-no-lines .bbit-tree-elbow {
+  background: transparent;
+}
+
+.bbit-tree-no-lines .bbit-tree-elbow-end {
+  background: transparent;
+}
+
+.bbit-tree-no-lines .bbit-tree-elbow-line {
+  background: transparent;
+}
+
+/* Arrows */
+.bbit-tree-arrows .bbit-tree-elbow {
+  background: transparent;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-plus {
+  background: transparent no-repeat 0 0;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-minus {
+  background: transparent no-repeat -16px 0;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-end {
+  background: transparent;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-end-plus {
+  background: transparent no-repeat 0 0;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-end-minus {
+  background: transparent no-repeat -16px 0;
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-line {
+  background: transparent;
+}
+
+.bbit-tree-arrows .bbit-tree-ec-over .bbit-tree-elbow-plus {
+  background-position: -32px 0;
+}
+
+.bbit-tree-arrows .bbit-tree-ec-over .bbit-tree-elbow-minus {
+  background-position: -48px 0;
+}
+
+.bbit-tree-arrows .bbit-tree-ec-over .bbit-tree-elbow-end-plus {
+  background-position: -32px 0;
+}
+
+.bbit-tree-arrows .bbit-tree-ec-over .bbit-tree-elbow-end-minus {
+  background-position: -48px 0;
+}
+
+.bbit-tree-elbow-plus,
+.bbit-tree-elbow-minus,
+.bbit-tree-elbow-end-plus,
+.bbit-tree-elbow-end-minus {
+  cursor: pointer;
+}
+
+.ie ul.bbit-tree-node-ct {
+  font-size: 0;
+  line-height: 0;
+  zoom: 1;
+}
+
+.bbit-tree-node {
+  white-space: nowrap;
+}
+
+.bbit-tree-node-el {
+  line-height: 18px;
+  cursor: default;
+  /* cursor:pointer;*/
+}
+
+.bbit-tree-node a {
+  text-decoration: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: ignore;
+  -kthml-user-focus: normal;
+  -moz-user-focus: normal;
+  -moz-outline: 0 none;
+  outline: 0 none;
+}
+
+.bbit-tree-node a span {
+  text-decoration: none;
+  padding: 1px 3px 1px 2px;
+}
+
+.bbit-tree-node .bbit-tree-node-disabled .bbit-tree-node-icon {
+  -moz-opacity: 0.5;
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
+
+.bbit-tree-node .bbit-tree-node-inline-icon {
+  background: transparent;
+}
+
+.bbit-tree-node a:hover {
+  text-decoration: none;
+}
+
+
+
+.bbit-tree-root {
+  zoom: 1;
+}
+
+
+.bbit-tree-node-expanded .bbit-tree-node-icon {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/folder-open.gif);
+}
+
+
+.bbit-tree-node-collapsed .bbit-tree-node-icon {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/folder.gif);
+}
+
+
+.bbit-tree-node .bbit-tree-node-inline-icon {
+  background-image: none;
+}
+
+.bbit-tree-node-loading a span {
+  font-style: italic;
+  color: #444444;
+}
+
+
+.bbit-tree-arrows .bbit-tree-elbow-plus {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/arrows.png);
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-minus {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/arrows.png);
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-end-plus {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/arrows.png);
+}
+
+.bbit-tree-arrows .bbit-tree-elbow-end-minus {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/arrows.png);
+}
+
+.bbit-tree-node-leaf .bbit-tree-node-icon {
+  background-image: url(https://assetscdn.51zouchuqu.com/h5page/header.png);
+}
+
+.bbit-tree-node {
+  color: #000;
+  font-size: 12px;
+}
+
+.bbit-tree-node a {
+  color: #000;
+}
+
+.bbit-tree-node a span {
+  color: #000;
+}
+
+.bbit-tree-node .bbit-tree-node-disabled a span {
+  color: gray !important;
+}
+
+.bbit-tree-node .bbit-tree-node-over {
+  background-color: #eee;
+}
+
+.bbit-tree-node .bbit-tree-selected {
+  background-color: #d9e8fb;
+}

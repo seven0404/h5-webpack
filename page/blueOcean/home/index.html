@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>蓝海</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div class="content">
+    <div class="control">
+      <div class="icon" id="leftC">
+        <img src="https://loading.io/assets/img/icon/showcase/Icon%20(5).svg" alt="" srcset="">
+      </div>
+      <div class="title">
+        蓝海
+      </div>
+      <div class="typeToggle">
+        <div class="active" data-type="1"> UI 图</div>
+        <div data-type="2"> 原 型</div>
+      </div>
+      <div class="catalogue" id="catalogue">
+        <!-- <div class="prd">
+          <div class="prdTitle">
+            <img class="jiantou" src="./img/jiantou.svg" alt="" srcset="">
+            B端重构第5
+            <img class="upload" src="./img/uplaod.svg" alt="" srcset="">
+          </div>
+          <ul class="list">
+              <li data-src="http://192.168.3.163:8080">
+                <div>B端重构第一期</div>
+                <div>2019-09-08 12:00</div>
+              </li>
+              <li data-src="http://192.168.3.163:53700">
+                  <div>B端重构第一期</div>
+                  <div>2019-09-08 12:00</div>
+                </li>
+                <li data-src="http://192.168.3.163:8080">
+                    <div>B端重构第一期</div>
+                    <div>2019-09-08 12:00</div>
+                  </li>
+            </ul>
+        </div> -->
+        
+      </div>
+      <div class="add">
+        <span>新建项目 + </span>
+      </div>
+    </div>
+    <div class="main">
+      <div class="icon" id="rightC">
+        <img src="https://loading.io/assets/img/icon/showcase/Icon%20(5).svg" alt="" srcset="">
+      </div>
+      <iframe frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+  </div>
+  <div class="uploadModel">
+      <div class="uTitle" id="uTitle">UI 上传</div>
+      <form role="form" name="file" id="myForm" enctype="multipart/form-data">
+        <!--上传文件需使用enctype="multipart/form-data"-->
+      <ul class="form">
+        <li>
+          <div class="title">项目名称：</div>
+          <div class="input">
+            <input type="text" placeholder="请输入项目名称，最长20个字" maxlength="20" name="prdName" id="prdName">
+            <div class="cover"></div>
+          </div>
+        </li>
+        <li>
+          <div class="title">文件上传：</div>
+          <div class="input">
+            <input type="file" id="upload_file" accept="aplication/zip" name="upName">
+            <div class="progress">
+              <div id="progress_bar_top"></div>
+              <span id="progressValue">0%</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <input style="display: none" type="text" name="prdId" id="prdId">
+      </form>
+      <div class="sendInfotitle">请选择邮件通知对象:</div>
+      <div class="sendInfo">
+        <div id="tree"></div>
+      </div>
+      <p id="to">文件将上传到《<span id="willName">第一个项目</span>》项目下</p>
+      <div class="button">
+        <button class="cancle">取消</button>
+        <button id="submit">提交</button>
+      </div>
+  </div>
+</body>
+<script src="../common/common.js"></script>
+<script src="../common/tree1.js" type="text/javascript"></script>
+<script src="./index.js"></script>
+<script src="../common/jquery.tree.js" type="text/javascript"></script>
+</html>

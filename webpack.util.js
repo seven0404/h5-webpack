@@ -1,13 +1,15 @@
-let fs =require('fs')
+const fs =require('fs')
+const devMode = process.env.NODE_ENV !== 'production';
+const apiConfig = process.env.npm_config_api
 
 //获取入口文件对象
 function getEntry(file_list){
   var entry={};
   file_list.forEach((item)=>{
     if(/.*\.js$|.*\.css$|.*\.less$/.test(item[0])){
-        var re =new RegExp("^" + process.env.npm_config_prd + "/");
+        var re =new RegExp("^" + process.env.npm_config_pro + "/");
         if(re.test(item[3])){
-            entry[item[2].split('page/')[1].replace(/.less$/,'.css')]=item[2]
+            entry[item[2].split("page/")[1].replace(/.less$/,'.css')]=item[2]
         }
     }
   })
@@ -20,22 +22,18 @@ function getEntry(file_list){
       }
   */
 }
-exports.getEntry = getEntry;
 
 function getKey(item){
     let arr = []
-    arr.push(item[2].split('page/')[1].replace(/\.html$/,'.js'))
-    arr.push(item[2].split('page/')[1].replace(/\.html$/,'.css'))
-    console.log(arr)
+    arr.push(item[2].split("page/")[1].replace(/\.html$/,'.js'))
+    arr.push(item[2].split("page/")[1].replace(/\.html$/,'.css'))
+    
     return arr
 }
 
-exports.getKey = getKey;
-
-
 function getImgEntry(file_list){
     var imgArray=[];
-    var re =new RegExp("^" + process.env.npm_config_prd + "/");
+    var re =new RegExp("^" + process.env.npm_config_pro + "/");
     file_list.forEach((item)=>{
         if(re.test(item[3]) && /\.(jpe?g|png|gif|svg)$/i.test(item[0])){
             let data = {}
@@ -53,9 +51,25 @@ function getImgEntry(file_list){
   */
 }
 
-exports.getImgEntry = getImgEntry;
-
-
+//  dev1, dev2,test1,test2, prod的请求域名。对应启动服务的请求域名copy 配置文件
+function getApiConfigEntry(){
+    console.log('apiConfig',apiConfig)
+   switch(apiConfig){
+       case 'dev1': return  [{ from: './config/dev/zcq-dev1/config.js', to:  process.env.npm_config_pro  +'/config/config.js' }]; break;
+       case 'dev2': return  [{ from: './config/dev/zcq-dev2/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+       case 'test1':  return [{ from: './config/test/zcq-test1/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+       case 'test2':  return [{ from: './config/dev/zcq-test2/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+       case 'prod': return  [{ from: './config/prod/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+       default: return  [{ from: './config/dev/zcq-dev1/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+   }
+    
+    /*entry 看起来就是这样
+    [
+        { from: './page/h5/img/1.jpg', to: 'img/1.jpg' },
+        { from: './page/h5/img/2.jpg', to: 'img/2.jpg' },
+    ]
+  */
+}
 
 //递归遍历所有文件
 function getAllFileArr(path){
@@ -86,8 +100,6 @@ function getAllFileArr(path){
      */
     return AllFileList;
 }
-exports.getAllFileArr=getAllFileArr;
-
 
 //删除文件夹 ，递归删除
 function deleteFolderRecursive(path) {
@@ -106,4 +118,13 @@ function deleteFolderRecursive(path) {
     }
 };
 
-exports.deleteFolderRecursive=deleteFolderRecursive;
+module.exports = {
+    getApiConfigEntry,
+    deleteFolderRecursive,
+    getAllFileArr,
+    getImgEntry,
+    getKey,
+    getEntry
+} 
+
+
