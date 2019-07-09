@@ -76,7 +76,7 @@
   
     1. 支持css 和 less
     2. 不管是写的css或者写的less, 在开发的时候，
-      直接引入  ```<link rel="stylesheet" href="./index.css">```
+      直接引入  <link rel="stylesheet" href="./index.css">
       即使写的less,比如说写的是index.less,但是开发的时候还是引入./index.css，因为less在打包的时候会自动转化的css。所以只需要直接写成css 即可
     3. 开发环境css默认不压缩，生产环境css默认压缩
 
