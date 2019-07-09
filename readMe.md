@@ -1,5 +1,6 @@
 # 活动页打包工具
   特性:
+
     1. 每个文件夹就是一个活动项目
 
     2. 开发启动单个项目的服务
@@ -11,13 +12,15 @@
     5. html, js, css,less 压缩混淆
 
     6. 本地代理（解决接口跨域）
-    
+
     7. 支持es6,less
 
 ## 使用
-  ### 拥有两种启动方式
+
+  ### 拥有两种启动方式
   一：引导式启动：
-    ```js
+  
+  ```js
     npm run start-cli
 
     npm run dev-cli 
@@ -46,31 +49,33 @@
   2. --api=api  将要重config中copy的文件名（dev1,dev2,test1,test2,prod），无默认值
   3. --env=env  项目运行环境，pc或mobile， mobile 会默认引入rem.css 默认值：mobile
   4. --isVConsole=isVConsole 是有加载调试工具vConsole, 默认不加载
-  5. --poxy=poxy 是否启动本地代理，如果需要启动本地代理。直接跟上url,如--poxy=192.168.0.2:8080。 默认无代理
+  5. --poxy=poxy 是否启动本地代理，如果需要启动本地代理。直接跟上url,如```--poxy=192.168.0.2:8080```。 默认无代理
 
 
 ## 其他说明
 
   1. js 文件引入问题，默认引入了jq 的cdn 地址，引入位置在body末尾。所以自己的js需要放到body之后，才能使用jq.
     如： 
-    ```js
-      <body>
-      </body>
-      <script src="./index.js"></script>
-    ```
+
+  ```js
+    <body>
+    </body>
+    <script src="./index.js"></script>
+  ```
     
-    打包后的效果：
-    ```js
+  打包后的效果：
+
+  ```js
     <body>
       <script src="//assetscdn.51zouchuqu.com/js/jquery-3.2.1.min.js"></script>
     </body>
     <script src="./index.js"></script>
-    ```
+  ```
 
   2: css 引入，不自动引入，需要手动引入
     1. 支持css 和 less
     2. 不管是写的css或者写的less, 在开发的时候，
-      直接引入 <link rel="stylesheet" href="./index.css">
+      直接引入  ```<link rel="stylesheet" href="./index.css">```
       即使写的less,比如说写的是index.less,但是开发的时候还是引入./index.css，因为less在打包的时候会自动转化的css。所以只需要直接写成css 即可
     3. 开发环境css默认不压缩，生产环境css默认压缩
 
