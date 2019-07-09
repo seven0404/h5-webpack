@@ -42,6 +42,11 @@ $(function () {
     $('iframe').attr('src', '')
     prdType = $(this)[0].dataset.type
     getList($(this)[0].dataset.type)
+    if(prdType == 1){ // UI
+      $('.add span').html('新建UI项目 +')
+    }else{
+      $('.add span').html('新建原型项目 +')
+    }
   })
 
   // 弹出上传
@@ -106,7 +111,7 @@ $(function () {
                   <li data-src="${e.fileUrl}">
                     <div>
                       ${e.fileName}
-                      <a class='download' href="${e.fileUrl.replace(/index.html$/,'assets.zip')}" download="assets.zip">下载切图</a>
+                      ${prdType==1?`<a class='download' href="${e.fileUrl.replace(/index.html$/,'assets.zip')}" download="assets.zip">下载切图</a>`:''}
                     </div>
                     <div>${formatDateTime(e.createdAt)}</div>
                   </li>
@@ -115,7 +120,7 @@ $(function () {
             value += `<div class="prd">
                   <div class="prdTitle">
                     <img class="jiantou" src="../img/jiantou.svg" alt="" srcset="">
-                    ${item.prdName}
+                    <div class="prdName">${item.prdName}</div>
                     ${userInfo.jurisdiction==1?`<img class="upload" src="../img/uplaod.svg" alt="" srcset="" data-id='${item.prdId}' data-prdname='${item.prdName}'></img>`:''}
                   </div>
                   <ul class="list">

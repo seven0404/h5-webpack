@@ -16,6 +16,12 @@ list.map(i=>{console.log(i)})
 var aa = 'hello'
 var bb = 'world'
 
+const testEs6 = () => {
+  console.log('es5')
+}
+
+testEs6()
+
 console.log(`he side ${aa} lalalla ${bb}`)
 
 console.log('serverUrl',serverUrl)

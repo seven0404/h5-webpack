@@ -1,5 +1,4 @@
 const fs =require('fs')
-const devMode = process.env.NODE_ENV !== 'production';
 const apiConfig = process.env.npm_config_api
 
 //获取入口文件对象
@@ -53,14 +52,16 @@ function getImgEntry(file_list){
 
 //  dev1, dev2,test1,test2, prod的请求域名。对应启动服务的请求域名copy 配置文件
 function getApiConfigEntry(){
-    console.log('apiConfig',apiConfig)
    switch(apiConfig){
        case 'dev1': return  [{ from: './config/dev/zcq-dev1/config.js', to:  process.env.npm_config_pro  +'/config/config.js' }]; break;
        case 'dev2': return  [{ from: './config/dev/zcq-dev2/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
        case 'test1':  return [{ from: './config/test/zcq-test1/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
        case 'test2':  return [{ from: './config/dev/zcq-test2/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
        case 'prod': return  [{ from: './config/prod/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
-       default: return  [{ from: './config/dev/zcq-dev1/config.js', to: process.env.npm_config_pro  +'/config/config.js' }]; break;
+       default: 
+        console.error(`error: 没有找到--api=${apiConfig}， 请检查--api='${apiConfig}'， 参数值分别为（dev1,dev2,test1,test2,prod） \n`.red)
+        process.exit(`error: 没有找到--api=${apiConfig}， 请检查--api='${apiConfig}'， 参数值分别为（dev1,dev2,test1,test2,prod） \n`.red);
+       ; break;
    }
     
     /*entry 看起来就是这样
