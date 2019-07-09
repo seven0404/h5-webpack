@@ -196,8 +196,16 @@ if (!devMode) { // 生产环境
       var InjectPluginList = [{
         target: initSrciptPath,
         parent: 'body',
-        text: '<script src="/config/config.js"></script> <script src="//assetscdn.51zouchuqu.com/js/jquery-3.2.1.min.js"></script> '
+        text: '<script src="/' + process.env.npm_config_pro + '/config/config.js"></script> <script src="//assetscdn.51zouchuqu.com/js/jquery-3.2.1.min.js"></script> '
       }]
+
+      if(process.env.npm_config_isVConsole == 'true'){
+        var InjectPluginList = [{
+          target: initSrciptPath,
+          parent: 'body',
+          text: '<script src="/' + process.env.npm_config_pro + '/config/config.js"></script> <script src="//assetscdn.51zouchuqu.com/js/jquery-3.2.1.min.js"></script> <script src="//assetscdn.51zouchuqu.com/js/vconsole.min.js"></script> <script>var vConsole = new VConsole()</script>'
+        }]
+      }
 
       if (process.env.npm_config_agent !== 'pc') {
         InjectPluginList.unshift({

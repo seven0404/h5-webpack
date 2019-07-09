@@ -1,37 +1,52 @@
 # 活动页打包工具
   特性:
     1. 每个文件夹就是一个活动项目
+
     2. 开发启动单个项目的服务
+
     3. 独立打包
+
     4. 常用插件注入（jq, zcqShare 等等）
+
     5. html, js, css,less 压缩混淆
+
     6. 本地代理（解决接口跨域）
+    
     7. 支持es6,less
 
 ## 使用
-  拥有两种启动方式；
+  ### 拥有两种启动方式
   一：引导式启动：
+    ```js
     npm run start-cli
+
     npm run dev-cli 
+  ```
   注：上面两种方式是：start-cli 是webpack-dev-server启动本地服务，不会打包文件。dev-cli是编译dev包文件。不启动本地服务
 
   二：命令式启动
 
   1. 启动服务器
+  ```js
   npm run start --pro=项目名 --api=dev1/dev2/test1/test2/prod
+  ```
 
-  打包出dev文件，不启动服务
+  2. 打包出dev文件，不启动服务
+  ```js
   npm run dev --pro=项目名 --api=dev1/dev2/test1/test2/prod
-
-  2. 打包
+  ```
+  
+  3. 打包
+  ```js
    npm run build --pro=项目名 --api=dev1/dev2/test1/test2/prod
+  ```
 
 ## 命令式启动参数说明
-  --pro=name 启动的项目名称，无默认值
-  --api=api  将要重config中copy的文件名（dev1,dev2,test1,test2,prod），无默认值
-  --env=env  项目运行环境，pc或mobile， mobile 会默认引入rem.css 默认值：mobile
-  --isVConsole=isVConsole 是有加载调试工具vConsole, 默认不加载
-  --poxy=poxy 是否启动本地代理，如果需要启动本地代理。直接跟上url,如--poxy=192.168.0.2:8080。 默认无代理
+  1. --pro=name 启动的项目名称，无默认值
+  2. --api=api  将要重config中copy的文件名（dev1,dev2,test1,test2,prod），无默认值
+  3. --env=env  项目运行环境，pc或mobile， mobile 会默认引入rem.css 默认值：mobile
+  4. --isVConsole=isVConsole 是有加载调试工具vConsole, 默认不加载
+  5. --poxy=poxy 是否启动本地代理，如果需要启动本地代理。直接跟上url,如--poxy=192.168.0.2:8080。 默认无代理
 
 
 ## 其他说明
