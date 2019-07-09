@@ -175,7 +175,7 @@ if (!devMode) { // 生产环境
       var name = item[2];
       var prex = item[3]
       var initSrciptPath = item[2].split("./page/")[1]
-      module.exports.plugins.push(
+      conf.plugins.push(
         new htmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
           // favicon: './src/images/favicon.ico', //favicon路径，通过webpack引入同时可以生成hash值
           filename: prex + item[0],
@@ -215,7 +215,7 @@ if (!devMode) { // 生产环境
         })
       }
 
-      module.exports.plugins.push(
+      conf.plugins.push(
         new HtmlWebpackInjectPlugin(InjectPluginList)
       )
 
@@ -223,7 +223,7 @@ if (!devMode) { // 生产环境
   })
 
   // css 压缩
-  module.exports.plugins.push(
+  conf.plugins.push(
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),

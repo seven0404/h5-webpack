@@ -24,8 +24,10 @@
     npm run start-cli
 
     npm run dev-cli 
+
+    npm run build-cli
   ```
-  注：上面两种方式是：start-cli 是webpack-dev-server启动本地服务，不会打包文件。dev-cli是编译dev包文件。不启动本地服务
+  注：start-cli 是webpack-dev-server启动本地服务，不会打包文件。dev-cli是编译dev包文件。不启动本地服务
 
   二：命令式启动
 

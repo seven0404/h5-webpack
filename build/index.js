@@ -6,7 +6,7 @@ const path = require('path');
 const { exec } = require('child_process');
 
 
-function cliParmas(callback){
+function cliParmas(callback,type){
   let params = null
   co(function* () {
 
@@ -31,8 +31,11 @@ function cliParmas(callback){
     let isVConsole = yield isNeedVConsole()
   
     // 是否需要代理
-    let poxy = yield isNeedProxy()
-  
+    let poxy = false
+    if(type != 'build'){
+      poxy = yield isNeedProxy()
+    }
+    
     params = {
       name: name,
       api: api,

@@ -9,6 +9,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --watch --progress --inline",
     "start-cli": "node build/start.js",
     "dev-cli": "node build/dev.js",
+    "build-cli": "node build/build.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "author": "",
