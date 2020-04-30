@@ -53,7 +53,7 @@
     "extract": "^1.0.0",
     "extract-loader": "^3.1.0",
     "handlebars-loader": "^1.7.1",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "js-md5": "^0.7.2",
     "opener": "^1.5.1",
     "tapable": "^1.1.3",
